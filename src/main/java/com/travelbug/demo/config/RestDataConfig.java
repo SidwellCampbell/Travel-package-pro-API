@@ -29,9 +29,9 @@ public class RestDataConfig implements RepositoryRestConfigurer {
      * <p>
      * Set page configuration parameters
      *
-     * @param config
-     * @param cors
-     */
+//     * @param config
+//     * @param cors
+//     */
     @Override
     public void configureRepositoryRestConfiguration(RepositoryRestConfiguration config, CorsRegistry cors) {
         config.exposeIdsFor(Country.class);
@@ -44,5 +44,6 @@ public class RestDataConfig implements RepositoryRestConfigurer {
 
 
     }
+
 }
 
