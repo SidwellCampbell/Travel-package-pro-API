@@ -6,6 +6,7 @@ import com.travelbug.demo.dao.CustomerRepository;
 import com.travelbug.demo.entities.Cart;
 import com.travelbug.demo.entities.CartItem;
 import com.travelbug.demo.entities.Customer;
+import com.travelbug.demo.entities.StatusType;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -35,6 +36,8 @@ public class CheckoutServiceImpl implements CheckoutService{
         cartItems.forEach(cartItem -> cart.add(cartItem));
 
         cart.setCustomer(purchase.getCustomer());
+
+        cart.setStatus(StatusType.ordered);
 
         cartRepository.save(cart);
 
