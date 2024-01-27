@@ -3,6 +3,7 @@ package com.travelbug.demo.entities;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -50,7 +51,7 @@ public class Cart {
     private Customer customer;
 
 
-    @OneToMany(mappedBy = "cart")
+    @OneToMany(mappedBy = "cart",cascade = CascadeType.ALL)
     private Set<CartItem> cartItem;
 
     public void add(CartItem newCartItem){

@@ -24,7 +24,7 @@ public class CartItem {
     @JoinColumn(name = "vacation_id")
     private Vacation vacation;
 
-    @ManyToMany(mappedBy = "cartitems")
+    @ManyToMany(mappedBy = "cartitems",cascade = CascadeType.ALL)
     private Set<Excursion> excursions;
 
 

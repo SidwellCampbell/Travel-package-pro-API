@@ -47,7 +47,7 @@ public class Vacation {
     private Date last_update;
 
 
-    @OneToMany(mappedBy = "vacation")
+    @OneToMany(mappedBy = "vacation",cascade = CascadeType.ALL)
     private Set<Excursion> excursions;
 
     public Vacation(){}
