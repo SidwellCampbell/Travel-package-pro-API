@@ -7,6 +7,7 @@ import com.travelbug.demo.entities.Cart;
 import com.travelbug.demo.entities.CartItem;
 import com.travelbug.demo.entities.Customer;
 import com.travelbug.demo.entities.StatusType;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -18,8 +19,12 @@ public class CheckoutServiceImpl implements CheckoutService{
 
     private CartRepository cartRepository;
 
-    public CheckoutServiceImpl(CartRepository cartRepository) {
+    private CustomerRepository customerRepository;
+
+    @Autowired
+    public CheckoutServiceImpl(CartRepository cartRepository, CustomerRepository customerRepository) {
         this.cartRepository = cartRepository;
+        this.customerRepository = customerRepository;
     }
 
     @Transactional
@@ -35,11 +40,21 @@ public class CheckoutServiceImpl implements CheckoutService{
 
         cartItems.forEach(cartItem -> cart.add(cartItem));
 
-        cart.setCustomer(purchase.getCustomer());
+        Customer customer = purchase.getCustomer();
+
+        customer.add(cart);
+
+        cart.setCustomer(customer);
+
+
+
+//        cart.setCustomer(purchase.getCustomer());
 
         cart.setStatus(StatusType.ordered);
 
         cartRepository.save(cart);
+        customerRepository.save(customer);
+
 
         return new PurchaseResponse(orderTrackingNumber);
 
