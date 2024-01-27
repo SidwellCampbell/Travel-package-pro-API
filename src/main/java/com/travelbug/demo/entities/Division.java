@@ -36,8 +36,8 @@ public class Division {
     @JoinColumn(name = "country_id",nullable = false, updatable = false, insertable = false)
     private Country country;
 
-
-    private Long country_ID;
+    @Column(name = "country_id")
+    private long country_id;
 
     @OneToMany(mappedBy = "division")
     private Set<Customer> customers;
@@ -45,7 +45,7 @@ public class Division {
     public Division(){};
 
     public void setCountry(Country country) {
-        setCountry_ID(country.getId());
+        setCountry_id(country.getId());
         this.country = country;
     }
 }

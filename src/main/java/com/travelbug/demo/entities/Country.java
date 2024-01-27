@@ -28,7 +28,7 @@ public class Country {
     private Date last_update;
 
 
-    @OneToMany(mappedBy = "country_ID")
+    @OneToMany(mappedBy = "country")
     private Set<Division> divisions;
 
 
